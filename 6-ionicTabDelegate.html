@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="ezApp">
+<head>
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width,height=device-height">
+    <script src="ionic/js/ionic.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="ionic/css/ionic.min.css">
+</head>
+<body ng-controller="ezCtrl">
+	<ion-header-bar class="bar-stable">
+		<h1 class="title">$ionTabsDelegate</h1>
+	</ion-header-bar>
+	<ion-tabs class="tabs-stable tabs-icon-top">
+		<ion-tab title="tab1"   icon-on="ion-ios-heart"  icon-off="ion-ios-heart-outline">
+			<ion-view>
+				<ion-content padding="true" class="positive-bg light"  on-swipe-left="go(0)" on-swipe-right="back(0)">
+					<p>this is content of tab 1</p>
+				</ion-content>
+			</ion-view>
+		</ion-tab>
+		<ion-tab title="tab2"  icon-on="ion-ios-heart"  icon-off="ion-ios-heart-outline">
+			<ion-view>
+				<ion-content  padding="true" class="calm-bg light" on-swipe-left="go(1)" on-swipe-right="back(1)">
+					<p>this is content of tab 2</p>
+				</ion-content>
+			</ion-view>
+		</ion-tab>
+		<ion-tab title="tab3"   icon-on="ion-ios-heart"  icon-off="ion-ios-heart-outline" >
+			<ion-view>
+				<ion-content  padding="true" class="balanced-bg light" on-swipe-left="go(2)" on-swipe-right="back(2)">
+					<p>this is content of tab 3</p>
+				</ion-content>
+			</ion-view>
+		</ion-tab>
+	</ion-tabs>
+</body>
+</html>
+
+<script>
+angular.module("ezApp",["ionic"])
+.controller("ezCtrl",function($scope,$ionicTabsDelegate){
+	// 手势事件http://www.runoob.com/ionic/ionic-gesture-event.html
+
+	$scope.go = function(index){
+		console.log();
+		$ionicTabsDelegate.select(index+1);
+	}
+
+	$scope.back = function(index){
+		$ionicTabsDelegate.select(index-1);
+	}
+});
+
+
+</script>

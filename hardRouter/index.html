@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<head>
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width,height=device-height">
+    <script src="ionic/js/ionic.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="ionic/css/ionic.min.css">
+    <meta charset="utf-8">
+</head>
+<body ng-controller="main">
+	<ion-nav-bar class="bar-positive" >
+		<ion-nav-back-button></ion-nav-back-button>
+	</ion-nav-bar>
+	<ion-nav-view></ion-nav-view>
+</body>
+</html>
+
+	<script>
+	var m1 = angular.module("myapp",["ionic"]);
+	m1.config(['$stateProvider',"$urlRouterProvider",function($stateProvider,$urlRouterProvider) {
+		$stateProvider.state("tabs",{
+			url:"/tabs",
+			abstract:true,
+			templateUrl:"template/tabs.html"
+		}).state("tabs.tab1",{
+			url:"/tab1",
+			views:{
+				"tabs-mytab1":{
+					templateUrl:"template/tabs-tab1.html"
+				}
+			}
+		}).state("tabs.tab2",{
+			url:"/tab2",
+			views:{
+				"tabs-mytab2":{
+					templateUrl:"template/tabs-tab2.html"
+				}
+			}
+		}).state("tabs.tab3",{
+			url:"/tab3",
+			views:{
+				"tabs-mytab3":{
+					templateUrl:"template/tabs-tab3.html"
+				}
+			}
+		}).state("tabs.tab1content",{
+			url:"/tab1content/:num",
+			views:{
+				"tabs-mytab1":{
+					templateUrl:"template/tabs-content.html",
+					controller:"contentController"
+				}
+			}
+		})
+
+	}])
+	m1.controller('main', ['$scope',"$state" ,function($scope,$state){
+		$state.go("tabs.tab1");
+	}])
+
+	m1.controller('contentController', ['$scope',"$stateParams" ,function($scope,$stateParams){
+		$scope.myparam =$stateParams.num;
+	}])
+
+	</script>

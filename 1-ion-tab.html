@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="ionic">
+<head>
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width,height=device-height">
+    <script src="ionic/js/ionic.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="ionic/css/ionic.min.css">
+    <meta charset="utf-8">
+</head>
+<body>
+	<ion-header-bar class="bar-positive">
+		<h1 class="title">ion-tabs</h1>
+
+	</ion-header-bar>
+	
+	<ion-tabs >
+
+		<ion-tab title="mytab1">
+			<ion-view>
+				<ion-content has-subheader="false" class="assertive-bg">
+					<div>tab1</div>
+				</ion-content>
+				
+			</ion-view>
+		</ion-tab>
+		<ion-tab title="mytab2">
+			<ion-view>
+				<ion-content has-subheader="false" class="calm-bg">
+				<div>tab2</div>
+				<ion-list>
+					<ion-item href="#">
+						1111
+					</ion-item>
+					<ion-item href="#">
+						222
+					</ion-item>
+				</ion-list>
+				</ion-content>
+				
+			</ion-view>
+		</ion-tab>
+		<ion-tab title="mytab3">
+			<ion-view>
+				<ion-content has-subheader="false" class="positive-bg">
+					<div>tab3</div>
+				</ion-content>
+				
+			</ion-view>
+		</ion-tab>
+	</ion-tabs>
+</body>
+</html>

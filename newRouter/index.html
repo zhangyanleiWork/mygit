@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<head>
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width,height=device-height">
+    <script src="ionic/js/ionic.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="ionic/css/ionic.min.css">
+    <meta charset="utf-8">
+</head>
+<body ng-controller="main">
+	<ion-nav-bar class="bar-positive" >
+		<ion-nav-back-button></ion-nav-back-button>
+	</ion-nav-bar>
+	<ion-nav-view></ion-nav-view>
+</body>
+</html>
+
+	<script>
+	var m1 = angular.module("myapp",["ionic"]);
+	
+	m1.config(['$stateProvider',function($stateProvider) {
+		$stateProvider.state("tabs",{
+			url:"/tabs",
+			templateUrl:"template/tabs.html"
+		}).state("tabs.mytab1",{
+			//声明了一个mytab1 是tabs的子状态，模板载入方式不一样了 
+			url:"/mytab1",
+			views:{
+				"kerwinTab1":{
+					templateUrl:"template/tab1.html"
+				}
+			}
+		}).state("tabs.mytab2",{
+			url:"/mytab2",
+			views:{
+				"kerwinTab2":{
+					templateUrl:"template/tab2.html"
+				}
+			}
+		}).state("tabs.mytab3",{
+			url:"/mytab3",
+			views:{
+				"kerwinTab3":{
+					templateUrl:"template/tab3.html"
+				}
+			}
+		}).state("tabs.mytab1_content",{
+			url:"/mytab1_content/:mynumber",
+			views:{
+
+				//我如果想在tab1 选项卡 进行内部页面切换的话，一定模板载入的名字 跟mytab1 的名字相同
+				"kerwinTab1":{
+					templateUrl:"template/tab1_content.html",
+
+					controller:"mytab1_contentController"
+				}
+			}
+		})
+
+
+	}])
+
+
+	m1.controller('main', ['$scope',"$state", function($scope,$state){
+
+		//go 的参数 是不是一个状态 ，前面state的第一个参数
+		$state.go("tabs.mytab1");
+	}])
+
+	m1.controller('mytab1_contentController', ['$scope',"$stateParams", function($scope,$stateParams){
+
+		//go 的参数 是不是一个状态 ，前面state的第一个参数
+		console.log($stateParams);
+
+		$scope.myparam = $stateParams.mynumber;
+	}])
+	</script>
